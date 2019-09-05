@@ -116,9 +116,18 @@ def find_words(filename, in_tree):
             results.update(in_tree.get_suffixes_of(line.lower()))
             if results:
                 results = list(results)
-                results.sort(key=len, reverse=True)
+                results.sort(key=lambda w: (len(w), w), reverse=True)
                 all_results[raw_line] = results
     return all_results
+
+
+def compute_results(wordlist_filename, source_dir=None):
+    if source_dir is None:
+        source_dir = os.path.dirname(__file__)
+    suffix_tree = SuffixTree()
+    parse_pubsub(os.path.join(source_dir, 'public_suffix_list.dat'), suffix_tree)
+    parse_pubsub(os.path.join(source_dir, 'tlds-alpha-by-domain.txt'), suffix_tree)
+    return find_words(wordlist_filename, suffix_tree)
 
 
 def print_results(all_results):
@@ -126,14 +135,10 @@ def print_results(all_results):
         print('{}: {}'.format(word, suffixes))
 
 
-def run_in_dir(dirname):
-    suffix_tree = SuffixTree()
-    parse_pubsub(os.path.join(dirname, 'public_suffix_list.dat'), suffix_tree)
-    parse_pubsub(os.path.join(dirname, 'tlds-alpha-by-domain.txt'), suffix_tree)
-    results = find_words(os.path.join(dirname, 'american-english'), suffix_tree)
-    # results = find_words(os.path.join(dirname, 'few-words.txt'), suffix_tree)
-    print_results(results)
+def run():
+    dirname = os.path.dirname(__file__)
+    print_results(compute_results(os.path.join(dirname, 'american-english')))
 
 
 if __name__ == '__main__':
-    run_in_dir(os.path.dirname(__file__))
+    run()
