@@ -1,0 +1,23 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+But: Not quite
+Upstream-Name: domain-words
+Source: https://github.com/BenWiederhake/domain-words
+
+Files: *
+Copyright: 2019 Ben Wiederhake <BenWiederhake.GitHub@gmx.de>
+License: MIT
+
+Files: src/tlds-alpha-by-domain.txt
+Source: https://data.iana.org/TLD/tlds-alpha-by-domain.txt
+License: Public Domain, I guess?
+License-Grant: Nowhere
+
+Files: src/public_suffix_list.dat
+Source: publicsuffix 20190723.1836-1
+License: Mozilla Public License, v. 2.0.
+License-Grant: src/public_suffix_list.dat
+
+Files: src/american-english
+Source: 
+License: Mozilla Public License, v. 2.0.
+License-Grant: public_suffix_list.dat
