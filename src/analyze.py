@@ -33,10 +33,10 @@ class SuffixTree:
                 if not word.endswith(suffix):
                     continue
                 results.update(values)
-            return results
         else:
             results.update(self.storage[word[-1]].get_suffixes_of(word[:-1]))
-            return results
+        results.discard(word)
+        return results
 
     def do_explode(self):
         assert self.simple
