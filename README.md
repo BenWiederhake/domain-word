@@ -1,6 +1,6 @@
 # domain-word
 
-> Tells you which "words" can be written as a publicly available domain.
+Tells you which "words" can be written as a publicly available domain.
 
 Domain names that end up being a word after removing the dots are cool.
 I guess we all remember [Del.icio.us](https://en.wikipedia.org/wiki/Delicious_(website)),
